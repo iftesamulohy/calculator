@@ -1,0 +1,14 @@
+body{
+    background-color: #1E2326;
+}
+.key{
+    padding: 10px 30px;
+    text-align: center;
+    background-color: #1E2326;
+    color: #fff;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+#inputValue{
+    height: 100px;
+}
