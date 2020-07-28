@@ -2,13 +2,23 @@ body{
     background-color: #1E2326;
 }
 .key{
-    padding: 10px 30px;
+    padding: 50px 50px;
     text-align: center;
     background-color: #1E2326;
     color: #fff;
     border-right: 1px solid gray;
     border-bottom: 1px solid gray;
+    cursor: pointer;
+    font-size: 25px;
+}
+.keySide{
+    background-color: #5E4BB6;
+    border-right: none;
+}
+.keyequal{
+    background-color: #FEC208;
 }
 #inputValue{
     height: 100px;
+    font-size: 40px;
 }

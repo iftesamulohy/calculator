@@ -12,30 +12,33 @@
         <div class="calculator col-8">
             <div class="row">
                 <div class="screen col-12 p-0">
-                    <input type="text" class="form-control" id="inputValue">
+                    <div class="text-white">
+                        <h2 id="prevValue"></h2><span id="arithmeticalOperator"></span>
+                    </div>
+                    <input type="text" class="form-control" id="inputValue" value="0">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 key">1</div>
-                <div class="col-md-3 key">2</div>
-                <div class="col-md-3 key">3</div>
-                <div class="col-md-3 key">4</div>
-                <div class="col-md-3 key">5</div>
-                <div class="col-md-3 key">6</div>
-                <div class="col-md-3 key">7</div>
-                <div class="col-md-3 key">8</div>
-                <div class="col-md-3 key">9</div>
-                <div class="col-md-3 key">10</div>
-                <div class="col-md-3 key">11</div>
-                <div class="col-md-3 key">12</div>
-                <div class="col-md-3 key">13</div>
-                <div class="col-md-3 key">14</div>
-                <div class="col-md-3 key">15</div>
-                <div class="col-md-3 key">16</div>
-                <div class="col-md-3 key">17</div>
-                <div class="col-md-3 key">18</div>
-                <div class="col-md-3 key">19</div>
-                <div class="col-md-3 key">20</div>
+                <div class="col-md-3 key" onclick="clearAll()">C</div>
+                <div class="col-md-3 key">+/-</div>
+                <div class="col-md-3 key">%</div>
+                <div class="col-md-3 key keySide" onclick="arithmetic('/')">/</div>
+                <div class="col-md-3 key" onclick="valueInput(7)">7</div>
+                <div class="col-md-3 key" onclick="valueInput(8)">8</div>
+                <div class="col-md-3 key" onclick="valueInput(9)">9</div>
+                <div class="col-md-3 key keySide" onclick="arithmetic('X')">X</div>
+                <div class="col-md-3 key" onclick="valueInput(4)">4</div>
+                <div class="col-md-3 key" onclick="valueInput(5)">5</div>
+                <div class="col-md-3 key" onclick="valueInput(6)">6</div>
+                <div class="col-md-3 key keySide" onclick="arithmetic('-')">-</div>
+                <div class="col-md-3 key" onclick="valueInput(1)">1</div>
+                <div class="col-md-3 key"  onclick="valueInput(2)">2</div>
+                <div class="col-md-3 key" onclick="valueInput(3)">3</div>
+                <div class="col-md-3 key keySide" onclick="arithmetic('+')">+</div>
+                <div class="col-md-3 key" onclick="valueInput(0)">0</div>
+                <div class="col-md-3 key">.</div>
+                <div class="col-md-3 key" onclick="deleteOne()">del</div>
+                <div class="col-md-3 key keyequal" onclick="equation()">=</div>
             </div>
             
 
@@ -44,5 +47,50 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script>
+    function valueInput(value){
+        let inputValue = parseFloat(document.getElementById("inputValue").value);
+        if(inputValue==0){
+            document.getElementById("inputValue").value = value
+        }
+        if(inputValue!=0){
+            document.getElementById("inputValue").value = inputValue.toString()+value.toString();
+        }
+    }
+    function arithmetic(operatorMath){
+        let prevValue = document.getElementById('inputValue').value;
+        let instruction= operatorMath;
+        document.getElementById('prevValue').innerText=prevValue;
+        document.getElementById('inputValue').value="0";
+        document.getElementById('arithmeticalOperator').innerText= operatorMath;
+        
+    }
+    function equation(){
+       let valueOne= parseFloat(document.getElementById('prevValue').innerText);
+       let ValueTwo = parseFloat(document.getElementById('inputValue').value)
+       let identifier=document.getElementById('arithmeticalOperator').innerText
+       if(identifier=='+'){
+        document.getElementById('inputValue').value=valueOne+ValueTwo;
+       }
+       if(identifier=='X'){
+        document.getElementById('inputValue').value=valueOne*ValueTwo;
+       }
+       if(identifier=='-'){
+        document.getElementById('inputValue').value=valueOne-ValueTwo;
+       }
+       if(identifier=='/'){
+        document.getElementById('inputValue').value=valueOne/ValueTwo;
+       }
+    }
+    function clearAll(){
+       document.getElementById('prevValue').innerText= "";
+       document.getElementById('arithmeticalOperator').innerText="";
+       document.getElementById('inputValue').value = "0";
+    }
+    function deleteOne(){
+       let text = document.getElementById('inputValue').value;
+       document.getElementById('inputValue').value=text.slice(0, -1);
+    }
+</script>
 </body>
 </html>
